@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Winner Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+        .container { background: white; padding: 20px; border-radius: 10px; width: 400px; margin: auto; }
+        h2 { text-align: center; }
+        input, select { width: 100%; padding: 8px; margin: 5px 0; }
+        button { background: #28a745; color: white; padding: 10px; border: none; width: 100%; margin-top: 10px; }
+        .result { text-align: center; margin-top: 20px; font-size: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>🏏 IPL Winner Predictor</h2>
+    <form method="POST" action="/predict">
+        <label>Team 1</label>
+        <input type="text" name="team1" required>
+
+        <label>Team 2</label>
+        <input type="text" name="team2" required>
+
+        <label>Toss Winner</label>
+        <input type="text" name="toss_winner" required>
+
+        <label>Venue</label>
+        <input type="text" name="venue" required>
+
+        <label>Toss Decision</label>
+        <select name="toss_decision" required>
+            <option value="bat">Bat</option>
+            <option value="field">Field</option>
+        </select>
+
+        <label>Season</label>
+        <input type="number" name="season" min="2008" max="2025" required>
+
+        <button type="submit">Predict Winner</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
